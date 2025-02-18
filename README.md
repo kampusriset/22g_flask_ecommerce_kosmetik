@@ -1,0 +1,1 @@
+# 22g_flask_ecommerce_kosmetik
