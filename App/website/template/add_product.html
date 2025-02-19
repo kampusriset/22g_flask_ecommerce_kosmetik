@@ -1,0 +1,29 @@
+
+{%  extends 'dashboard.html' %}
+
+{% block title %} | add product {% endblock %}
+
+{% block body %}
+<div class="container mt-5 justify-content-center align-items-center bg-dark text-white px-4 py-5">
+    <h2>Add a New Product</h2>
+    <form method="POST" enctype="multipart/form-data" action="{{ url_for('admin.add_product') }}">
+        <div class="mb-3">
+            <label for="product_name" class="form-label">Product Name</label>
+            <input type="text" class="form-control" id="product_name" name="product_name" required>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" name="price" step="0.01" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="product_image" class="form-label">Product Image</label>
+            <input type="file" class="form-control" id="product_image" name="product_image" accept="image/*" required>
+        </div>
+        <button type="submit" class="btn btn-warning">Add Product</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %} | Home {% endblock %}
+
+{% block body %}
+<section>
+    <div class="row d-flex justify-content-center align-items-center bg-dark text-white vh-100 px-3">
+        <div class="col-lg-6 my-3">
+            <h1 class="card-title">GLOW WITH US</h1>
+            <hr>
+            <h3 class="card-title py-3">CIPTAKAN KULIT YANG CANTIK DARI DALAM DENGAN GLOWIFY</h3>
+            <a href="" class="btn btn-warning text-white">SHOP NOW</a>
+        </div>
+        <div class="col-lg-6 img-container px-0">
+            <img src="../static/images/home.jpg" alt="gambar home" class="image-fluid object-fit-cover w-100 h-100"> 
+        </div>
+      </div>
+</section>
+
+<section id="about">
+    <div class="row d-flex justify-conter-center align-items-center bg-dark text-white vh-100">
+        <div class="col-md-12 banner-container">
+            <img src="../static/images/model.jpg" alt="gambar model" class="image-fluid object-fit-cover w-100 h-100">
+        </div>
+    </div>
+</section>
+
+<section class="bg-dark">
+    <div class="container">
+        <div class="row d-flex justify-conter-center bg-dark text-white vh-100 text-center py-5 mx-auto">
+            <div class="h1 pt-5 mb-0 pb-0">
+                ABOUT US
+            </div>
+            <div class="col-md-4">
+                <h3 class="card-title pb-3">Visi</h3>
+                <div style="text-align: justify;">
+                    Menjadi platform e-commerce terpercaya di indonesia yang menawarkan produk kecantikan kulit terbaik dengan memberikan pengalaman belanja online yang aman,mudah,dan penuh inspirasi.
+                </div>
+            </div>
+            <div class="col-md-4" >
+                <h3 class="card-title pb-3">Misi</h3>
+                <div style="text-align: justify;">
+                    Kami Berkomitmen untuk memberikan solusi kecantikan pada setiap individu, dengan menghadirkan produk perawatan kulit dan kencatikan yang aman,terjamin kualitasnya,serta memiliki manfaat yang nyata bagi kulit anda. Melalui platform kami menyediakan berbagai alat untuk perawatan kulit yang dapat anda lihat pada bagian produk.
+                </div>
+            </div>
+            <div class="col-md-4">
+                <h3 class="card-title pb-3">History</h3>
+                <div style="text-align: justify;">
+                    E-commerce ini dibentuk dari ide salah satu founder kami , untuk memberikan pengalaman baru dalam bisnis elektronik bagian kosmetik. pada awalnya platform ini hanya bertujuan untuk memudahkan kami dalam mencari informasi mengenai kosmetik dan bisa dapat membeli berbagai kosmetik dalam satu platform.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container banner-container py-5">
+        <img src="{{ url_for('static', filename='media/banner rev2.jpg') }}" alt="Banner" class="img-fluid">
+    </div>
+    <div class="d-flex justify-content-center text-align-center py-4">
+        <h1 class="text-dark">Product</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% if products %}
+                {% for product in products[:4] %}
+                    <div class="col-md-3">
+                        <div class="card card-ex border bg-light mb-4">
+                            <img src="{{ url_for('static', filename='images/' + product[4]) }}" class="card-img-top img-fluid" alt="{{ product[1] }}">
+                            <div class="card-body border">
+                                <h5 class="card-title">{{ product[1] }}</h5> <!-- product_name -->
+                                <p class="card-text">{{ product[3] }}</p> <!-- description -->
+                                <h6 class="text-success">Rp.{{ product[2] }}</h6> <!-- price -->
+                                <div>
+                                    <button class="btn btn-warning border-rounded">Shop Now</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="alert alert-info text-center" role="alert">
+                    No products available.
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

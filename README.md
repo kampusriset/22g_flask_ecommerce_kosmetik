@@ -10,5 +10,5 @@ Aplikasi ini berisi tentang demo e-commerce sederhana yang menampilkan produk-pr
 
 
 ## Perkenalan Tim
--**Bayu Rizky Utomo** -
+- **Bayu Rizky Utomo** -
 

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} | Orders {% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <h2 class="mb-4">My Orders</h2>
+
+    {% if orders %}
+    <div class="list-group">
+        {% for order in orders %}
+        <a href="{{ url_for('form.order_details', order_id=order[0]) }}" class="list-group-item list-group-item-action">
+            <div class="d-flex justify-content-between">
+                <div>
+                    <h5>Order #{{ order[0] }}</h5>
+                    <p class="mb-0 text-muted">Date: {{ order[2] }}</p>
+                </div>
+                <h5 class="text-success">Rp.{{ order[1] }}</h5>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-info">No orders found.</div>
+    {% endif %}
+</div>
+{% endblock %}
+

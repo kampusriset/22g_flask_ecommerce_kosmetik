@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link
+      rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}"/>
+      <script src="https://kit.fontawesome.com/e24507d923.js" crossorigin="anonymous"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+  </head>
+  <body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="margin-top: 5px;">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+    <section>
+        <div class="row g-0 d-flex justify-content-center align-items-center vh-100 bg-light">
+          <div class="col-md-3 d-flex h-50">
+            <div class="card shadow-lg bg-dark" width="22 rem">
+              <div class="card-body text-white">
+                <h5 class="card-title text-center">
+                  Glowify
+                </h5>
+                <h4 class="card-title text-warning pt-4">
+                  Belum Punya Akun?
+                </h4>
+                <div class="pt-5">
+                  <span class="text-warning">daftar sekarang</span> dan mulai belanja dengan lebih mudah dan hemat cukup klik tombol <span class="text-warning">SIGN UP</span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center pt-3">
+                  <a href="{{ url_for('auth.register') }}" class="btn btn-warning">SIGN UP</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 h-50">
+            <div class="card shadow-lg" width="27 rem">
+              <div class="card-body">
+              <a href="/" class="text-white btn btn-warning position-absolute top-0 end-0 m-3">
+                  <i class="fas fa-arrow-left"></i> Kembali
+              </a>
+                <h5 class="card-title text-center pt-5">
+                  SELAMAT DATANG
+                </h5>
+                <form action="{{ url_for('auth.login') }}" method="post" class="pt-5">
+                  <div class="mb-4">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="enter username" name="username" required>
+                  </div>
+                  <div class="mb-5 pt-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control w-100" id="password" placeholder="enter password" name="password" required>
+                  </div>
+                  <button type="submit" class="btn btn-warning text-white">LOGIN</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+  
+  
+    <script src="{{ url_for('static',filename = 'js/bootstrap.min.js') }}"></script>
+  </body>
+</html>

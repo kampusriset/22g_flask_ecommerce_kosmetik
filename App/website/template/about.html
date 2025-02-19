@@ -1,0 +1,46 @@
+{%  extends 'base.html' %}
+
+{% block title %} | About {% endblock %}
+
+{% block body %}
+     <!-- About Us Section -->
+     <section id="about-us" class="bg-light text-dark py-5">
+        <div class="container">
+          <h3 class="text-center mb-4"><strong>ABOUT US</strong></h3>
+          <div class="row">
+              <!-- Kotak 1 -->
+              <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                      <img src="{{ url_for('static', filename='media/ABOUTUS.jpg') }}" class="card-img-top" alt="ABOUT US">
+                      <div class="card-body d-flex flex-column">
+                          <h5 class="card-title">TEAM</h5>
+                          <p class="card-text">Tim Developer E-Commerce kami terdiri dari profesional berpengalaman yang fokus memberikan solusi digital terbaik untuk bisnis online Anda. Kami ahli dalam mengembangkan aplikasi e-commerce yang cepat, responsif, dan user-friendly, dengan desain menarik. Dengan teknologi terbaru dan inovatif, kami memastikan platform e-commerce Anda tidak hanya bersaing, tetapi juga tumbuh di pasar yang kompetitif.</p>
+                      </div>
+                  </div>
+              </div>
+      
+              <!-- Kotak 2 -->
+              <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                      <img src="{{ url_for('static', filename='media/VISI.png') }}" class="card-img-top" alt="VISI">
+                      <div class="card-body d-flex flex-column">
+                          <h5 class="card-title">VISI</h5>
+                          <p class="card-text">Menjadikan platform e-commerce terpercaya di Indonesia yang menawarkan produk kecantikan dan perawatan kulit terbaik, dengan memberikan pengalaman belanja online yang aman, mudah, dan penuh inspirasi.</p>
+                      </div>
+                  </div>
+              </div>
+      
+              <!-- Kotak 3 -->
+              <div class="col-md-4 mb-4">
+                  <div class="card h-100">
+                      <img src="{{ url_for('static', filename='media/MISI.jpg') }}" class="card-img-top" alt="MISI">
+                      <div class="card-body d-flex flex-column">
+                          <h5 class="card-title">MISI</h5>
+                          <p class="card-text">Misi kami adalah menyediakan produk kesehatan berkualitas tinggi yang mudah diakses, membantu meningkatkan kesejahteraan dan gaya hidup sehat pelanggan melalui platform e-commerce yang aman dan terpercaya.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        </div>
+      </section>
+{% endblock %}

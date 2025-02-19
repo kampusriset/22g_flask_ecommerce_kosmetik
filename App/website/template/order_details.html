@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} |Orders {% endblock %}
+
+{% block body %}
+
+<div class="container my-4">
+    <h2 class="mb-4">Order Details</h2>
+
+    <div class="card p-4 mb-4">
+        <h4>Order #{{ order_info[0] }}</h4>
+        <p><strong>Date:</strong> {{ order_info[2] }}</p>
+        <p><strong>Total:</strong> Rp.{{ order_info[1] }}</p>
+        <p><strong>Shipping Address:</strong> {{ order_info[3] }}</p>
+    </div>
+
+    <h4>Products in Order</h4>
+    <div class="row">
+        {% for item in order_items %}
+        <div class="col-md-4">
+            <div class="card mb-3">
+                <img src="{{ url_for('static', filename='images/' + item[3]) }}" class="card-img-top" alt="{{ item[1] }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item[1] }}</h5> <!-- Product Name -->
+                    <p class="card-text">Rp.{{ item[2] }}</p> <!-- Price -->
+                    <p class="card-text">Quantity: {{ item[4] }}</p> <!-- Quantity -->
+                    <p class="card-text">Total: Rp.{{ item[5] }}</p> <!-- Total -->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

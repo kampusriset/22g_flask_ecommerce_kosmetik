@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} | Shop {% endblock %}
+
+{% block body %}
+
+<div class="container py-5">
+    <div class="banner-container py-5">
+        <img src="../static/images/banner.jpg" alt="" class="img-fluid">
+    </div>
+    <div class="product-container">
+        {% for product in products %}
+        <div class="card card-ex border bg-light">
+            <img src="{{ url_for('static', filename='images/' + product[4]) }}" class="card-img-top img-fluid" alt="{{ product[1] }}">
+            <div class="card-body border">
+                <h5 class="card-title">{{ product[1] }}</h5>  <!-- product_name -->
+                <p class="card-text">{{ product[3] }}</p>  <!-- description -->
+                <h6 class="text-success">Rp.{{ product[2] }}</h6>  <!-- price -->
+                <form action="{{ url_for('controller.add_to_cart', product_id=product[0]) }}" method="post">
+                    <button class="btn btn-warning border-rounded mt-2" type="submit">Add to Cart</button>
+                </form>                
+            </div>
+        </div>
+        {% else %}
+        <div class="alert alert-info" role="alert">No products available.</div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

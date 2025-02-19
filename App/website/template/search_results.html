@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %} | Search Results {% endblock %}
+
+{% block body %}
+<div class="container my-4">
+    <h2 class="mb-4">Search Results for "{{ keyword }}"</h2>
+
+    {% if products %}
+        <div class="row">
+            {% for product in products %}
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='images/' + product[4]) }}" class="card-img-top" alt="{{ product[1] }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ product[1] }}</h5>
+                        <p class="text-success">Rp.{{ product[2] }}</p>
+                        <p class="card-text">{{ product[3] }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-warning">No products found.</div>
+    {% endif %}
+</div>
+{% endblock %}

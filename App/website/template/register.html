@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+
+    <script src="https://kit.fontawesome.com/e24507d923.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+    
+    <link
+    rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+    <title>Register</title>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center vh-100 ">
+        <div class="card shadow-lg px-5 " style="width:24 rem">
+            <div class="card-body">
+                <h5 class="card-title text-center text-warning">
+                    SIGN UP
+                </h5>
+                <form method="POST" action="{{ url_for('auth.register') }}">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" class="form-control bg-warning text-white" id="username" name="username" placeholder="enter username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control bg-warning text-white" id="email" name="email" placeholder="enter password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control bg-warning text-white" id="password" name="password" placeholder="enter email" required>
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label for="role" class="form-label">Role (admin or user)</label>
+                        <input type="text" class="form-control" id="role" name="role">
+                    </div> -->
+                    <div class="row d-flex">
+                        <div class="col-md-3 me-4">
+                            <button type="submit" class="btn btn-warning text-white">Sign</button>
+                        </div>
+                        <div class="col-md-3">
+                            <a href="{{ url_for('auth.login') }}" class="btn btn-primary">Login</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+

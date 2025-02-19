@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %} | Order Confirm {% endblock %}
+
+{% block body %}
+    <div class="container text-center my-5">
+        <h2 class="text-success">Order Placed Successfully!</h2>
+        <p>Thank you for your purchase. Your order will be shipped to the address provided.</p>
+        <a href="{{ url_for('controller.product_shop') }}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+{% endblock %}

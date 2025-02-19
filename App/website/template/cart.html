@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block title %} | Cart {% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Your Cart</h2>
+    <!-- Cart Table -->
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <thead class="thead-warning">
+                <tr>
+                    <th scope="col" class="bg-warning">#</th>
+                    <th scope="col" class="bg-warning">Product Image</th>
+                    <th scope="col" class="bg-warning">Product Name</th>
+                    <th scope="col" class="bg-warning">Price</th>
+                    <th scope="col" class="bg-warning">Quantity</th>
+                    <th scope="col" class="bg-warning">Total</th>
+                    <th scope="col" class="bg-warning">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if cart_items %}
+                    {% for index, item in cart_items %}
+                        <tr>
+                            <th scope="row">{{ index + 1 }}</th>
+                            <td><img src="{{ url_for('static', filename='images/' + item[4]) }}" alt="{{ item[1] }}" class="cart-img img-fluid"></td>
+                            <td>{{ item[1] }}</td> <!-- product_name -->
+                            <td>Rp.{{ item[2] }}</td> <!-- price -->
+                            <td>{{ item[3] }}</td> <!-- quantity -->
+                            <td>Rp.{{ item[5] }}</td> <!-- total -->
+                            <td class="d-flex justify-content-center">
+                                <form class="cart-actions" method="POST" action="{{ url_for('controller.delete_item', product_id=item[0]) }}">
+                                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center">Your cart is empty.</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Total Price and Actions -->
+    {% if cart_items %}
+        <div class="d-flex justify-content-between align-items-center mt-4">
+            <div class="total-price">Total: Rp.{{ total_price }}</div>
+            <div>
+                <form method="POST" action="{{ url_for('controller.clear_cart') }}" class="d-inline">
+                    <button type="submit" class="btn btn-warning">Clear Cart</button>
+                </form>
+                <a href="{{ url_for('form.checkout') }}" class="btn btn-primary">Proceed to Checkout</a>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}

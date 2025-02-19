@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+
+    <script src="https://kit.fontawesome.com/e24507d923.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+    
+    <link
+    rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+    <title>Glowify{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <!-- navigation bar -->
+    <nav class="navbar navbar-expand-lg bg-warning" style="background-color: white;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style="color: orange; font-size: 30px; margin-right: -2px;">
+            <i class="fa-brands"></i>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <img src="" alt="">
+              <li class="nav-item">
+                <a class="nav-link active d-flex justify-content-center align-items-center" aria-current="page" href="/" style="font-family: Arial, Helvetica, sans-serif; font-size: 20px;">
+                  <img src="../static/media/LOGOGLOWIFY.png" alt="" style="width: 80px; height: 40px;">
+                </a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/" style="font-size: 17px;">Home</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/product_shop" style="font-size: 17px;">Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/form/about" style="font-size: 17px;">About us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#contact-us" style="font-size: 17px;">Contact</a>
+              </li>
+            </ul>
+  
+            <form class="d-flex" role="search" action="/search" style="margin-right: 170px;" method="GET">
+              <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search" required>
+              <button class="btn btn-light" type="submit">Search</button>
+            </form>
+          </div>
+
+
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item mx-2" id="items">
+            
+                {% if cart | length < 1 %}
+                <a class="nav-link text-grey" href="/view_cart"><span class="badge bg-success"></span> Cart
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                {% else %}
+                <a class="nav-link text-grey" href="/view_cart"><span class="badge bg-success"></span> Cart
+                  <i class="bi bi-{{ cart | length }}-square-fill"></i>
+                </a>
+                
+                {% endif %}
+                
+                
+              </li>
+    
+
+              <li class="nav-item dropdown mx-2">
+                <a class="nav-link dropdown-toggle text-grey" href="3" role="button", id="profileDropdown" 
+                data-bs-toggle="dropdown" aria-hidden="false">
+                  Account
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+    
+                
+                  
+                  <li><a class="dropdown-item" href="{{ url_for('auth.update_password') }}">Update Pass<i class="fa-solid fa-user"></i></a></li>
+                  <li><a class="dropdown-item" href="{{ url_for('form.user_orders') }}">Orders <i class="fa-solid fa-truck-fast"></i></a></li>
+                  <li><a class="dropdown-item" href="/auth/logout">Log Out <i class="fa-solid fa-right-from-bracket"></i></a></li>
+    
+
+                  <li><a class="dropdown-item" href="/auth/login">Login <i class="fa-solid fa-right-to-bracket"></i></a></li>
+
+                </ul>
+              </li>
+          </ul>
+        </div>
+      </nav>
+
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="margin-top: 5px;">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+  
+      {% block body %}
+
+
+      {% endblock %}
+  
+  
+      <section id="contact-us" class="bg-dark text-white">
+        <footer>
+          <div class="container">
+              <div class="row py-5">
+                  <!-- Bagian Kiri -->
+                  <div class="col-md-4 footer-section">
+                      <!-- Ganti dengan logo yang sesuai -->
+                      <div class="text-center">
+                          <img src="{{ url_for('static', filename='media/LOGOGLOWIFYWHITEBG.png') }}" alt="Logo" class="mb-3" style="width: 160px;">
+                      </div>
+                      <div class="text-center">
+                          <h4><strong>FOLLOW</strong></h4>
+                      </div>
+                      <div class="social-icons text-center">
+                          <a href="#"><img src="{{ url_for('static', filename='media/FACEBOOK.png') }}" alt="Logo" class="mb-3" style="width: 75px;"></a>
+                          <a href="#"><img src="{{ url_for('static', filename='media/INSTAGRAM.png') }}" alt="Logo" class="mb-3" style="width: 75px;"></a>
+                          <a href="#"><img src="{{ url_for('static', filename='media/TWITTER.png') }}" alt="Logo" class="mb-3" style="width: 75px;"></a>
+                      </div>
+                      <h5>
+                        <address class="text-center"><strong>ADDRESS</strong></address>
+                      </h5>
+                      <p class="text-center">
+                          Jl.Veteran, Dusun I, Singopuran,
+                          <br>Kec.Kartasura, Kabupaten Sukoharjo,
+                          <br>Jawa Tengah 57163
+                      </p>
+      
+                      <h5 class="text-center">
+                        <strong>CONTACT</strong>
+                      </h5>
+                      <p class="text-center">
+                        Email : support@glowify.my.id
+                        <br>Phone : +62 896 1346 7890
+                        <br>Fax : +62 31 3145678
+                      </p>
+                  </div>
+      
+                  <!-- Bagian Tengah -->
+                  <div class="col-md-4 footer-section">
+                      <h3 class="text-center">OPENING HOURS</h3>
+                      <hr class="border border-light border-3">
+                      <ul>
+                          <li>Monday - Friday : 09:00 - 20:00</li>
+                          <li>Saturday : 10:00 - 17:00</li>
+                          <li>Sunday : Tutup</li>
+                      </ul>
+                      <hr class="border border-light border-3">
+                      <p><strong>Produk Kami : </strong></p>
+                      <ul>
+                          <li>Glowify BodyCare</li>
+                          <li>Glowify Facial Wash</li>
+                          <li>Glowify HairCare</li>
+                      </ul>
+                  </div>
+      
+                  <!-- Bagian Kanan -->
+                  <div class="col-md-4 footer-section text-center">
+                      <h5>WORKING TIME</h5>
+                      (GMT+07:00)
+                      <br>Bangkok, Hanoi, Jakarta
+                      <p>
+                        <h3>
+                          <p><strong>Any Questions?</strong></p>
+                        </h3>
+                      </p>
+                      <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Enter Your Name">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Enter Your Email">
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <input type="text" class="form-control form-control-sm" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" placeholder="Enter Your Number Phone">
+                      </div>
+                      <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Enter Your Message" id="floatingTextarea2" style="height: 100px"></textarea>
+                      </div>
+                      <div>
+                          <button type="button" class="btn btn-outline-warning text-white">Send Your Message</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </footer>
+      </section>
+  
+        
+        
+    <script src="{{ url_for( 'static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/all.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/jquery.js') }}"></script>
+</body>
+</html>

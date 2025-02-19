@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block title %} | Checkout {% endblock %}
+
+{% block body %}
+<div class="container my-4 bg-dark px-4 py-4 text-white">
+    <h2 class="mb-4">Checkout</h2>
+
+    <!-- Display Cart Items -->
+    <div class="mb-4">
+        <h4>Order Summary</h4>
+        {% if cart_items %}
+            {% for item in cart_items %}
+            <div class="cart-item text-dark">
+                <img src="{{ url_for('static', filename='images/' + item[4]) }}" alt="{{ item[1] }}"> <!-- Image -->
+                <div class="cart-item-details">
+                    <h5 class="mb-1">{{ item[1] }}</h5> <!-- Product Name -->
+                    <p class="mb-0">Rp.{{ item[2] }} x {{ item[3] }}</p> <!-- Price x Quantity -->
+                </div>
+                <div class="cart-item-price">
+                    Rp.{{ item[5] }} <!-- Total Price -->
+                </div>
+            </div>
+            {% endfor %}
+            <div class="text-end mt-3">
+                <h5>Total: Rp.{{ total_price }}</h5>
+            </div>
+        {% else %}
+            <p class="text-center">Your cart is empty.</p>
+        {% endif %}
+    </div>
+
+    <!-- Address Input -->
+    <form action="{{ url_for('form.checkout') }}" method="POST">
+        <div class="mb-3">
+            <h3 class="mb-4">Pilih Opsi Pengiriman</h3>
+            <div class="btn-group d-flex" role="group" aria-label="Shipping Options">
+              <button class="btn btn-outline-primary w-100" onclick="showDetails('shipping','Standard')">Standard (3-5 hari)</button>
+              <button class="btn btn-outline-success w-100" onclick="showDetails('shipping','Express')">Express (1-2 hari)</button>
+              <button class="btn btn-outline-warning w-100" onclick="showDetails('shipping','Same Day')">Same Day</button>
+            </div>
+
+            <!-- Area untuk menampilkan detail -->
+            <div id="shipping-details" class="mt-4 d-none">
+              <div class="alert alert-info" role="alert">
+                <!-- Penjelasan pengiriman akan diisi di sini -->
+              </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <h3 class="mt-5 mb-4">Pilih Metode Pembayaran</h3>
+            <div class="btn-group d-flex mb-4" role="group" aria-label="Payment Methods">
+              <button class="btn btn-outline-primary w-100" onclick="showDetails('payment', 'Transfer Bank')">Transfer Bank</button>
+              <button class="btn btn-outline-success w-100" onclick="showDetails('payment', 'Kartu Kredit')">Kartu Kredit</button>
+              <button class="btn btn-outline-warning w-100" onclick="showDetails('payment', 'COD')">Cash on Delivery (COD)</button>
+            </div>
+        
+            <div id="payment-details" class="mt-4 d-none">
+              <div class="alert alert-success" role="alert">
+                <!-- Penjelasan pembayaran akan diisi di sini -->
+              </div>
+            </div>
+        </div>
+      
+        <div class="mb-3">
+            <label for="address" class="form-label">Shipping Address</label>
+            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="total_price" class="form-label">Total Price</label>
+            <input type="text" class="form-control" id="total_price" name="total_price" value="{{ total_price }}" readonly>
+        </div>
+        <button type="submit" class="btn btn-success">Place Order</button>
+    </form>
+</div>
+
+
+<script>
+       // Fungsi untuk menampilkan detail berdasarkan kategori (pengiriman atau pembayaran)
+    function showDetails(category, option) {
+      const detailsDiv = document.getElementById(`${category}-details`);
+      const alertBox = detailsDiv.querySelector('.alert');
+      
+      let details = '';
+
+      // Penjelasan pengiriman
+      if (category === 'shipping') {
+        switch (option) {
+          case 'Standard':
+            details = 'Pengiriman Standard membutuhkan waktu 3-5 hari kerja. Cocok untuk pengiriman non-mendesak.';
+            break;
+          case 'Express':
+            details = 'Pengiriman Express hanya membutuhkan waktu 1-2 hari kerja. Cocok untuk kebutuhan cepat.';
+            break;
+          case 'Same Day':
+            details = 'Pengiriman Same Day memastikan barang Anda sampai di hari yang sama, cocok untuk kebutuhan darurat.';
+            break;
+        }
+      }
+
+      // Penjelasan pembayaran
+      if (category === 'payment') {
+        switch (option) {
+          case 'Transfer Bank':
+            details = 'Pembayaran melalui Transfer Bank dilakukan dengan mengirimkan uang ke rekening kami.';
+            break;
+          case 'Kartu Kredit':
+            details = 'Pembayaran dengan Kartu Kredit memungkinkan transaksi cepat dan aman.';
+            break;
+          case 'COD':
+            details = 'Cash on Delivery (COD) memungkinkan Anda membayar saat barang diterima.';
+            break;
+        }
+      }
+
+      // Menampilkan detail ke dalam alert
+      alertBox.textContent = details;
+      detailsDiv.classList.remove('d-none');
+    }
+</script>
+{% endblock %}

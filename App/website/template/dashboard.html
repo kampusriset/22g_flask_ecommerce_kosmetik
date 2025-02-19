@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="{{ url_for('static',filename='js/bootstrap.min.js') }}"></script>
+
+    <script src="https://kit.fontawesome.com/e24507d923.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" />
+    
+    <link
+    rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <title>Dashboard{% block title %}{% endblock %}</title>
+</head>
+<body class="bg-secondary">
+    <nav class="navbar navbar-expand-lg bg-dark text-white" style="background-color: white;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" style="color: orange; font-size: 30px; margin-right: -2px;">
+            <i class="fa-brands"></i>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 text-white">
+              <li class="nav-item">
+                <a class="nav-link text-white" href="#" style="font-size: 17px;">Dashboard</a>
+              </li>
+  
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/admin/add_product" style="font-size: 17px;">Add Product</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/admin/product_list" style="font-size: 17px;">Product List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="font-size: 17px;"></a>
+              </li>
+            </ul>
+  
+            <form class="d-flex" role="search" action="/search" style="margin-right: 170px;" method="POST">
+              <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-light" type="submit">Search</button>
+            </form>
+          </div>
+    
+
+              <li class="nav-item dropdown mx-2">
+                <a class="nav-link dropdown-toggle text-grey" href="#" role="button", id="profileDropdown" 
+                data-bs-toggle="dropdown" aria-hidden="false">
+                  Account
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                  <li><a class="dropdown-item" href="/auth/logout">Log Out<i class="fa-solid fa-right-from-bracket"></i></a></li>
+    
+
+                  <li><a class="dropdown-item" href="/auth/login">Login<i class="fa-solid fa-right-to-bracket"></i></a></li>
+
+                </ul>
+              </li>
+          </ul>
+        </div>
+      </nav>
+      
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="margin-top: 5px;">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
+  
+      {% block body %}
+  
+
+      {% endblock %}
+
+
+
+    <script src="{{ url_for( 'static', filename='js/owl.carousel.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/all.min.js') }}"></script>
+    <script src="{{ url_for( 'static', filename='js/jquery.js') }}"></script>
+</body>
+</html>
