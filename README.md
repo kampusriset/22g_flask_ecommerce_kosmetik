@@ -10,5 +10,9 @@ Aplikasi ini berisi tentang demo e-commerce sederhana yang menampilkan produk-pr
 
 
 ## Perkenalan Tim
-- **Bayu Rizky Utomo** -
+- **Bayu Rizky Utomo** - [Mengerjakan Fitur CRUD dan authentikasi login]
+- **Naufal Hanan Jati Asmara** - [Membuat alur aplikasi dan template]
+- **Arig Kusuma Jati** - [Mengerjakan bagian design aplikasi]
+
+## Link Video Dokumentasi
 
