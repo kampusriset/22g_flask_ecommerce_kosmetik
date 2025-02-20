@@ -19,5 +19,5 @@ Aplikasi ini berisi tentang demo e-commerce sederhana yang menampilkan produk-pr
 - **Arig Kusuma Jati** - [Mengerjakan bagian design aplikasi]
 
 ## Link Video Dokumentasi
-Video Dokumentasi demo aplikasi bisa dilihat disini : ![klik disini](https://www.youtube.com/watch?v=1LEPGWDa9sY)
+Video Dokumentasi demo aplikasi bisa dilihat disini : [klik disini](https://www.youtube.com/watch?v=1LEPGWDa9sY)
 
