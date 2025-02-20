@@ -7,6 +7,8 @@ E-commerce Glowify
 Aplikasi ini berisi tentang demo e-commerce sederhana yang menampilkan produk-produk kosmetik yang akan dijual. Pada aplikasi ini akan menampilkan menu dashboard,produk,keranjang,order.
 
 ## Flowchart
+Flowchart Admin
+![Flowchart](https://github.com/kampusriset/22g_flask_ecommerce_kosmetik/blob/main/Screenshots/flowchart_admin.png)
 
 
 ## Perkenalan Tim
